@@ -1,3 +1,5 @@
+'use strict';
+
 var reversePolish = require('../lib/reverse-polish');
 var MemoryStream = require('memorystream');
 var util = require('util');
@@ -26,8 +28,8 @@ function assertInput(options, done) {
 
   var outputText = '';
   var errorText = '';
-  output.on('data', function(chunk) { outputText += chunk; });
-  error.on('data', function(chunk) { errorText += chunk; });
+  output.on('data', function (chunk) { outputText += chunk; });
+  error.on('data', function (chunk) { errorText += chunk; });
   calculator.on('close', function () {
     test.equal(outputText, options.output);
     test.equal(errorText, options.error);
@@ -38,38 +40,38 @@ function assertInput(options, done) {
   input.end(options.input);
 }
 
-exports['add'] = function (test) {
+exports.add = function (test) {
   assertInput({
-    input: [ 3, 5, '+', -2, '+' ],
-    output:[ 3, 5, 8,   -2, 6   ],
+    input:  [ 3, 5, '+', -2, '+' ],
+    output: [ 3, 5, 8,   -2, 6   ],
     error: '',
     test: test
   }, test.done);
 };
 
-exports['subtract'] = function (test) {
+exports.subtract = function (test) {
   assertInput({
-    input: [ 4, 2, '-', 2, '-' ],
-    output:[ 4, 2, 2,   2, 0   ],
+    input:  [ 4, 2, '-', 2, '-' ],
+    output: [ 4, 2, 2,   2, 0   ],
     error: '',
     test: test
   }, test.done);
 };
 
-exports['multiply'] = function (test) {
+exports.multiply = function (test) {
   assertInput({
-    input: [ 4, 2, '*', 0.5, '*' ],
-    output:[ 4, 2, 8,   0.5, 4   ],
+    input:  [ 4, 2, '*', 0.5, '*' ],
+    output: [ 4, 2, 8,   0.5, 4   ],
     error: '',
     test: test
   }, test.done);
 };
 
 
-exports['divide'] = function (test) {
+exports.divide = function (test) {
   assertInput({
-    input: [ 4, 2, '/', 2, '/' ],
-    output:[ 4, 2, 2,   2, 1   ],
+    input:  [ 4, 2, '/', 2, '/' ],
+    output: [ 4, 2, 2,   2, 1   ],
     error: '',
     test: test
   }, test.done);
@@ -78,7 +80,7 @@ exports['divide'] = function (test) {
 exports['single line input'] = function (test) {
   assertInput({
     input: '4 2 / 2 /,5,*\n',
-    output:[ 4, 2, 2, 2, 1, 5, 5 ],
+    output: [ 4, 2, 2, 2, 1, 5, 5 ],
     error: '',
     test: test
   }, test.done);
@@ -86,8 +88,8 @@ exports['single line input'] = function (test) {
 
 exports['divide by zero'] = function (test) {
   assertInput({
-    input: [ 1, 0, '/' ],
-    output:[ 1, 0 ],
+    input:  [ 1, 0, '/' ],
+    output: [ 1, 0 ],
     error: 'division by zero is not allowed\n',
     test: test
   }, test.done);
@@ -95,8 +97,8 @@ exports['divide by zero'] = function (test) {
 
 exports['too few arguments'] = function (test) {
   assertInput({
-    input: [ 1, '+' ],
-    output:[ 1 ],
+    input:  [ 1, '+' ],
+    output: [ 1 ],
     error: 'too few arguments to operator "+"\n',
     test: test
   }, test.done);
@@ -104,19 +106,18 @@ exports['too few arguments'] = function (test) {
 
 exports['unknown operator'] = function (test) {
   assertInput({
-    input: [ 1, 2, '?' ],
-    output:[ 1, 2 ],
+    input:  [ 1, 2, '?' ],
+    output: [ 1, 2 ],
     error: 'unknown operator "?"\n',
     test: test
   }, test.done);
 };
 
-exports['quit'] = function (test) {
+exports.quit = function (test) {
   assertInput({
     input: [ 'q' ],
-    output:'',
+    output: '',
     error: '',
     test: test
   }, test.done);
-
-}
+};
