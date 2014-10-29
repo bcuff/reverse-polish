@@ -80,7 +80,7 @@ exports.divide = function (test) {
 exports['single line input'] = function (test) {
   assertInput({
     input: '4 2 / 2 /,5,*\n',
-    output: [ 4, 2, 2, 2, 1, 5, 5 ],
+    output: [ 5 ],
     error: '',
     test: test
   }, test.done);
