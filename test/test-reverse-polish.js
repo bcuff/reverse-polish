@@ -102,3 +102,12 @@ exports['unknown operator'] = function (test) {
   }, test.done);
 };
 
+exports['quit'] = function (test) {
+  assertInput({
+    input: [ 'q' ],
+    output:'',
+    error: '',
+    test: test
+  }, test.done);
+
+}
