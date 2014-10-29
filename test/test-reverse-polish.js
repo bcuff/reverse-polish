@@ -75,6 +75,15 @@ exports['divide'] = function (test) {
   }, test.done);
 };
 
+exports['single line input'] = function (test) {
+  assertInput({
+    input: '4 2 / 2 /,5,*\n',
+    output:[ 4, 2, 2, 2, 1, 5, 5 ],
+    error: '',
+    test: test
+  }, test.done);
+};
+
 exports['divide by zero'] = function (test) {
   assertInput({
     input: [ 1, 0, '/' ],
