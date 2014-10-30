@@ -87,6 +87,15 @@ exports['single line input'] = function (test) {
   }, test.done);
 };
 
+exports['mixed test with error'] = function (test) {
+  assertInput({
+    input: [ 2, 3, 'garbage', 3, '+', '+' ],
+    output: [ 2, 3, 3, 6, 8 ],
+    error: 'unknown operator "garbage"\n',
+    test: test
+  }, test.done);
+};
+
 exports['divide by zero'] = function (test) {
   assertInput({
     input:  [ 1, 0, '/' ],
