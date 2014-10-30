@@ -1,8 +1,9 @@
+/*jslint indent: 2 */
 'use strict';
 
-var reversePolish = require('../lib/reverse-polish');
-var MemoryStream = require('memorystream');
-var util = require('util');
+var reversePolish = require('../lib/reverse-polish'),
+  MemoryStream = require('memorystream'),
+  util = require('util');
 
 function toConsoleFormat(values) {
   if (util.isArray(values)) {
@@ -12,22 +13,22 @@ function toConsoleFormat(values) {
 }
 
 function assertInput(options, done) {
-  var test = options.test;
-  var input = new MemoryStream();
-  var output = new MemoryStream();
-  var error = new MemoryStream();
-  var calculator = reversePolish({
-    input: input,
-    output: output,
-    error: error,
-    prompt: ''
-  });
+  var test = options.test,
+    input = new MemoryStream(),
+    output = new MemoryStream(),
+    error = new MemoryStream(),
+    outputText = '',
+    errorText = '',
+    calculator = reversePolish({
+      input: input,
+      output: output,
+      error: error,
+      prompt: ''
+    });
   options.input = toConsoleFormat(options.input);
   options.output = toConsoleFormat(options.output);
   options.error = toConsoleFormat(options.error);
 
-  var outputText = '';
-  var errorText = '';
   output.on('data', function (chunk) { outputText += chunk; });
   error.on('data', function (chunk) { errorText += chunk; });
   calculator.on('close', function () {

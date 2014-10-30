@@ -1,3 +1,4 @@
+/*jslint indent: 2 */
 'use strict';
 
 var reversePolish = require('./lib/reverse-polish');
