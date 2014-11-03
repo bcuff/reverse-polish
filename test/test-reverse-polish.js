@@ -68,11 +68,37 @@ exports.multiply = function (test) {
   }, test.done);
 };
 
-
 exports.divide = function (test) {
   assertInput({
     input:  [ 4, 2, '/', 2, '/' ],
     output: [ 4, 2, 2,   2, 1   ],
+    error: '',
+    test: test
+  }, test.done);
+};
+
+exports.tan = function (test) {
+  assertInput({
+    input:  [ 0, 'tan' ],
+    output: [ 0, 0 ],
+    error: '',
+    test: test
+  }, test.done);
+};
+
+exports.cos = function (test) {
+  assertInput({
+    input:  [ 0, 'cos' ],
+    output: [ 0, 1 ],
+    error: '',
+    test: test
+  }, test.done);
+};
+
+exports.sin = function (test) {
+  assertInput({
+    input:  [ 0, 'sin' ],
+    output: [ 0, 0 ],
     error: '',
     test: test
   }, test.done);
